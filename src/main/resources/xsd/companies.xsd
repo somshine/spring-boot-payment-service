@@ -1,0 +1,59 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+	targetNamespace="http://spring.io/guides/gs-producing-web-service"
+	elementFormDefault="qualified">
+	
+	<xs:element name="getCompanyRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCompanyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="company" type="tns:company"
+                    maxOccurs="1" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="getCompaniesRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getCompaniesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="company" type="tns:company"
+					maxOccurs="unbounded" minOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="company">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="description" type="xs:string" />
+			<xs:element name="shoppeId" type="xs:int" />
+			<xs:element name="products" type="tns:products"
+				maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="products">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="description" type="xs:string" />
+            <xs:element name="quantity" type="xs:double" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
